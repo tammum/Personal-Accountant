@@ -14,6 +14,15 @@
                 </button>
             </div>
         @endif
+    <!--error message code-->
+        @if(session()->has('error'))
+            <div class="alert alert-danger" id="dataInsertDangerMessage">
+                {{ session()->get('error') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
 
         <div class="row">
             <div class="col">
@@ -51,7 +60,8 @@
                         <input type="text" class="form-control" name="otherExpenses" id="otherExpenses">
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-info">Save</button>
+                        <button type="submit" class="btn btn-success">Save</button>
+                        <a class="btn btn-info" href="{{url('updateDailyExpense/'.Auth::id())}}">Update</a>
                         <button type="reset" class="btn btn-danger" onclick="clearAllFields()">Clear</button>
                     </div>
                 </form>

@@ -26,7 +26,7 @@
                     @csrf
                     <div class="form-group">
                         <label for="addToSalary">Add To Salary</label>
-                        <input type="text" class="form-control" name="addToSalary" id="addToSalary">
+                        <input type="text" class="form-control" name="addToSalary" id="addToSalary" required>
                     </div>
                     <div class="form-group">
                         <label for="bonus">Bonus Payment</label>

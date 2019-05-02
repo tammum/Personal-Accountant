@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
-@section('title','User Update Credit Page')
+@section('title','User Daily Expense Page')
+
 
 @section('content')
     <div class="container">
@@ -22,44 +23,46 @@
                 </button>
             </div>
         @endif
+
         <div class="row">
             <div class="col">
-                <h1 align="center">User's Monthly Expenses</h1>
+                <h1 align="center">User's Daily Expenses Update </h1>
             </div>
         </div>
         <div class="row">
             <div class="col-md-2">
             </div>
             <div class="col-md-8">
-                <form method="post" action="{{action('ExpenseController@getMonthlyExpense')}}">
+                <!--
+                <form action="action('ExpenseController@doUpdateDailyExpense', [$dailyExpenseData->id])" method="post">-->
+                    <form action="{{route('doUpdateDailyExpense', $dailyExpenseData->daily_expense_id)}}" method="post">
                     @csrf
                     <div class="form-group">
-                        <label for="houseRent">House Rent</label>
-                        <input type="text" class="form-control" name="houseRent" id="houseRent">
+                        <label for="morningBusFair">Morning Bus fair</label>
+                        <input type="text" class="form-control" name="morningBusFair" id="morningBusFair" value="{{$dailyExpenseData->morning_bus_fair}}">
                     </div>
                     <div class="form-group">
-                        <label for="electricityBill">Electricity Bill</label>
-                        <input type="text" class="form-control" name="electricityBill" id="electricityBill">
+                        <label for="morningShopping">Morning Shopping</label>
+                        <input type="text" class="form-control" name="morningShopping" id="morningShopping" value="{{$dailyExpenseData->morning_shopping}}">
                     </div>
                     <div class="form-group">
-                        <label for="balaceTransfer">Balane Transfer</label>
-                        <input type="text" class="form-control" name="balaceTransfer" id="balaceTransfer">
+                        <label for="eveningBusFair">Evening Bus fair</label>
+                        <input type="text" class="form-control" name="eveningBusFair" id="eveningBusFair" value="{{$dailyExpenseData->evening_bus_fair}}">
                     </div>
                     <div class="form-group">
-                        <label for="repayLoan">Repay Loan</label>
-                        <input type="text" class="form-control" name="repayLoan" id="repayLoan">
+                        <label for="eveningShopping">Evening Shopping</label>
+                        <input type="text" class="form-control" name="eveningShopping" id="eveningShopping" value="{{$dailyExpenseData->evening_shopping}}">
                     </div>
                     <div class="form-group">
                         <label for="mobileExpense">Mobile Expense</label>
-                        <input type="text" class="form-control" name="mobileExpense" id="mobileExpense">
+                        <input type="text" class="form-control" name="mobileExpense" id="mobileExpense" value="{{$dailyExpenseData->mobile_expense}}">
                     </div>
                     <div class="form-group">
                         <label for="otherExpenses">Other Expenses</label>
-                        <input type="text" class="form-control" name="otherExpenses" id="otherExpenses">
+                        <input type="text" class="form-control" name="otherExpenses" id="otherExpenses" value="{{$dailyExpenseData->other_expense}}">
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success">Save</button>
-                        <a class="btn btn-info" href="{{url('/updateMonthlyExpense/'.Auth::id())}}">Update</a>
+                        <button type="submit" class="btn btn-success">Save Changes</button>
                         <button type="reset" class="btn btn-danger" onclick="clearAllFields()">Clear</button>
                     </div>
                 </form>
@@ -68,16 +71,16 @@
         </div>
     </div>
 @endsection
+
 <script>
     function clearAllFields(){
-        $(houseRent).val("");
-        $(electricityBill).val("");
-        $(balaceTransfer).val("");
-        $(repayLoan).val("");
+        $(morningBusFair).val("");
+        $(morningShopping).val("");
+        $(eveningBusFair).val("");
+        $(eveningShopping).val("");
         $(mobileExpense).val("");
         $(otherExpenses).val("");
     }
-
     //for the notification box
     var msg = '{{Session::get('alert')}}';
     var exist = '{{Session::has('alert')}}';

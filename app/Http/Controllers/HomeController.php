@@ -30,7 +30,7 @@ class HomeController extends Controller
     {
 //        $totalDailyExpenseCurrentDay = 0;
        $currentDate = Carbon::now();
-       $today = $currentDate->toDateString();
+       $today = $currentDate->format('D M Y');
        $firstDayOfCurrentMonth = $currentDate->startOfMonth()->toDateString();
         $lastDayOfCurrentMonth = $currentDate->lastOfMonth()->toDateString();
 //       $firstDayOfPreviousMonth = $today->subMonth()->startOfMonth()->toDateString();

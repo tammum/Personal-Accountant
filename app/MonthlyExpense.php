@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class MonthlyExpense extends Model
 {
     //
+    protected $primaryKey = 'monthly_expense_id';
     protected $fillable = [
         'id', 'date', 'house_rent', 'electricity_bill', 'balance_transfer', 'repay_loan', 'mobile_expense', 'other_expense'
     ];
